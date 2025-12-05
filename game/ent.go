@@ -2,6 +2,7 @@ package game
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/FDUTCH/go-stringquery/query"
 	"github.com/df-mc/dragonfly/server/world"
@@ -24,15 +25,15 @@ func entityPosition(entity world.Entity) any {
 
 func entityRotation(entity world.Entity) any {
 	rot := entity.Rotation()
-	return fmt.Sprintf("y%2.f p%2.f", rot.Yaw(), rot.Pitch())
+	return fmt.Sprintf("y%.2f p%.2f", rot.Yaw(), rot.Pitch())
 }
 
 func entityYaw(entity world.Entity) any {
-	return entity.Rotation().Yaw()
+	return strconv.FormatFloat(entity.Rotation().Yaw(), 'f', 2, 64)
 }
 
 func entityPitch(entity world.Entity) any {
-	return entity.Rotation().Pitch()
+	return strconv.FormatFloat(entity.Rotation().Pitch(), 'f', 2, 64)
 }
 
 func entityType(entity world.Entity) any {
@@ -40,7 +41,7 @@ func entityType(entity world.Entity) any {
 }
 
 func formatVec3(pos mgl64.Vec3) string {
-	return fmt.Sprintf("%2.f %2.f %2.f", pos.X(), pos.Y(), pos.Z())
+	return fmt.Sprintf("%.2f %.2f %.2f", pos.X(), pos.Y(), pos.Z())
 }
 
 func formatGamemode(gamemode world.GameMode) string {
