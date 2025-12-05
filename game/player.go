@@ -21,6 +21,7 @@ var PlayerFormatter = query.NewFormatter[*player.Player]().
 	WithOption("rotation", playerRotation).
 	WithOption("yaw", playerYaw).
 	WithOption("pitch", playerPitch).
+	WithOption("type", playerType).
 	WithOption("ip", ip).
 	WithOption("address", ip).
 	WithOption("experience", experience).
@@ -107,6 +108,10 @@ func playerYaw(p *player.Player) any {
 
 func playerPitch(p *player.Player) any {
 	return entityPitch(p)
+}
+
+func playerType(p *player.Player) any {
+	return entityType(p)
 }
 
 func experience(p *player.Player) any {
