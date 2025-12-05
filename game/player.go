@@ -42,6 +42,7 @@ var PlayerFormatter = query.NewFormatter[*player.Player]().
 	WithOption("id", uuid).
 	WithOption("xuid", xuid).
 	WithOption("deviceID", deviceID).
+	WithOption("DID", deviceID).
 	WithOption("deviceModel", deviceModel).
 	WithOption("selfSignedID", selfSignedID).
 	WithOption("locale", locale).
@@ -51,8 +52,11 @@ var PlayerFormatter = query.NewFormatter[*player.Player]().
 	WithOption("absorption", absorption).
 	WithOption("beaconAffected", beaconAffected).
 	WithOption("dead", dead).
+	WithOption("deathPos", deathPosition).
+	WithOption("deathDim", deathDimension).
 	WithOption("deathPosition", deathPosition).
 	WithOption("deathDimension", deathDimension).
+	WithOption("dim", playerDimension).
 	WithOption("dimension", playerDimension).
 	WithOption("world", playerDimension).
 	WithOption("sprinting", sprinting).
@@ -66,6 +70,10 @@ var PlayerFormatter = query.NewFormatter[*player.Player]().
 	WithOption("fireProof", fireProof).
 	WithOption("mainHand", mainHand).
 	WithOption("offHand", offHand).
+	WithOption("helmet", helmet).
+	WithOption("chestplate", chestplate).
+	WithOption("leggings", leggings).
+	WithOption("boots", boots).
 	WithOption("gameMode", gameMode).
 	WithOption("gamemode", gameMode).
 	WithOption("gm", gameMode).
@@ -100,7 +108,6 @@ func playerPosition(p *player.Player) any {
 }
 
 func playerRotation(p *player.Player) any {
-	p.DeviceID()
 	return entityRotation(p)
 }
 
@@ -274,6 +281,22 @@ func mainHand(p *player.Player) any {
 func offHand(p *player.Player) any {
 	_, off := p.HeldItems()
 	return off
+}
+
+func helmet(p *player.Player) any {
+	return p.Armour().Helmet()
+}
+
+func chestplate(p *player.Player) any {
+	return p.Armour().Chestplate()
+}
+
+func leggings(p *player.Player) any {
+	return p.Armour().Leggings()
+}
+
+func boots(p *player.Player) any {
+	return p.Armour().Boots()
 }
 
 func gameMode(p *player.Player) any {
