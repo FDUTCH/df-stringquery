@@ -67,6 +67,8 @@ var PlayerFormatter = query.NewFormatter[*player.Player]().
 	WithOption("mainHand", mainHand).
 	WithOption("offHand", offHand).
 	WithOption("gameMode", gameMode).
+	WithOption("gamemode", gameMode).
+	WithOption("gm", gameMode).
 	WithOption("usingItem", usingItem)
 
 func playerName(p *player.Player) any {
